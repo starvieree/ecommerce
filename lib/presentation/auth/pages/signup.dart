@@ -1,12 +1,13 @@
 import 'package:ecommerce/common/helper/navigator/app_navigator.dart';
 import 'package:ecommerce/common/widgets/appbar/app_bar.dart';
 import 'package:ecommerce/common/widgets/button/basic_app_button.dart';
-import 'package:ecommerce/presentation/auth/pages/forgot_password.dart';
+import 'package:ecommerce/presentation/auth/pages/enter_password.dart';
+import 'package:ecommerce/presentation/auth/pages/signin.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class EnterPasswordPage extends StatelessWidget {
-  const EnterPasswordPage({super.key});
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +21,28 @@ class EnterPasswordPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _enterPasswordPage(context),
+            _signupPage(context),
+            const SizedBox(height: 20),
+            _firstNameField(context),
+            const SizedBox(height: 20),
+            _lastNameField(context),
+            const SizedBox(height: 20),
+            _emailField(context),
             const SizedBox(height: 20),
             _passwordField(context),
             const SizedBox(height: 20),
-            _continueButton(),
+            _continueButton(context),
             const SizedBox(height: 20),
-            _forgotPassword(context)
+            _createAccount(context)
           ],
         ),
       ),
     );
   }
 
-  Widget _enterPasswordPage(BuildContext context) {
+  Widget _signupPage(BuildContext context) {
     return const Text(
-      'Sign in',
+      'Create Account',
       style: TextStyle(
         fontSize: 32,
         fontWeight: FontWeight.bold
@@ -43,34 +50,58 @@ class EnterPasswordPage extends StatelessWidget {
     );
   }
 
-  Widget _passwordField(BuildContext context) {
+  Widget _firstNameField(BuildContext context) {
     return const TextField(
       decoration: InputDecoration(
-        hintText: 'Enter Password'
+        hintText: 'Firstname'
       ),
     );
   }
 
-  Widget _continueButton() {
+  Widget _lastNameField(BuildContext context) {
+    return const TextField(
+      decoration: InputDecoration(
+        hintText: 'Lastname'
+      ),
+    );
+  }
+
+  Widget _emailField(BuildContext context) {
+    return const TextField(
+      decoration: InputDecoration(
+        hintText: 'Email Address'
+      ),
+    );
+  }
+
+  Widget _passwordField(BuildContext context) {
+    return const TextField(
+      decoration: InputDecoration(
+        hintText: 'Firstname'
+      ),
+    );
+  }
+
+  Widget _continueButton(BuildContext context) {
     return BasicAppButton(
       onPressed: () {
-
+        AppNavigator.push(context, const EnterPasswordPage());
       },
       title: 'Continue',
     );
   }
 
-  Widget _forgotPassword(BuildContext context) {
+  Widget _createAccount(BuildContext context) {
     return RichText(
       text: TextSpan(
         children: [
           const TextSpan(
-            text: "Forgot password? "
+            text: "Do you have an account? "
           ),
           TextSpan(
-            text: 'Reset',
+            text: 'Sign in',
             recognizer: TapGestureRecognizer()..onTap = () {
-              AppNavigator.push(context, const ForgotPasswordPage());
+              AppNavigator.push(context, const SigninPage());
             },
             style: const TextStyle(
               fontWeight: FontWeight.bold
